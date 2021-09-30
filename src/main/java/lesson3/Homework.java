@@ -75,13 +75,10 @@ public class Homework {
         System.out.println();
 
         System.out.println("Массив после изменения: ");
-        for (int i = 0; i < array4.length; i++) {
-            for (int j = 0, t = array4.length-1; j < array4.length; j++, t--) {
+            for (int i = 0, j = 0, t = array4.length-1; j < array4.length; j++, t--, i++) {
                     array4[i][j] = 1;
                     array4[i][t] = 1;
-                    i++;
             }
-        }
 
         for (int i = 0; i < array4.length ; i++) {
             System.out.println(Arrays.toString(array4[i])); //вывод массива в консоль
@@ -89,10 +86,15 @@ public class Homework {
         System.out.println("\n\n");
 
                    //задание №5
-
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Задание №5");
-        System.out.println("Создан и заполнен массив при помощи метода: ");
-        System.out.println(Arrays.toString(ArrayMaker(10, 2)));
+        System.out.print("Введите длину массива: ");
+        int len = scanner.nextInt();
+        System.out.print("Введите число, которым будут заполнениы элементы массива: ");
+        int initialValue = scanner.nextInt();
+        System.out.println();
+        System.out.println("Инициализирован новый массив длиной в " + len + " элементов, заполненный числами " + initialValue);
+        arrayMaker(len, initialValue);
         System.out.println("\n\n");
 
                     //задание №6
@@ -117,7 +119,7 @@ public class Homework {
                     //задание №7
 
         System.out.println("Задание №7");
-        System.out.println(comparePartsOfArray(new int[] {13,15,23,33,33,55,11,5,3,4,6,2,3,66}));
+        System.out.println(comparePartsOfArray(new int[] {11,55,33,22,11,66}));
         System.out.println("\n\n");
 
 
@@ -130,64 +132,51 @@ public class Homework {
     }
 
 
-    public static int[] ArrayMaker(int len, int initialValue) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Введите длину массива: ");
-        len = sc.nextInt();
-        System.out.println();
-        System.out.print("Введите число, которым будут заполнениы элементы массива: ");
-        initialValue = sc.nextInt();
-        sc.close();
+    public static int[] arrayMaker(int len, int initialValue) {
         System.out.println();
         int[] array5 = new int [len];
         for (int i = 0; i < array5.length; i++) {
             array5[i] = initialValue;
         }
+        System.out.println(Arrays.toString(array5));
         return array5;
     }
 
     public static boolean comparePartsOfArray(int[] array) {
         int sum1 = 0;
         int sum2 = 0;
-            for (int i = array.length-1; i != 0; i--) {
-                if (sum1 == sum2 && sum1 != 0){
-                    break;
-                }
-
+            for (int i = array.length-1; i > 0; i--) {
                 sum1 += array[i];
 
-                for (int j = 0; j < array.length; j++) {
-                    if (sum1 == sum2) {
-                        break;
-                    }
-                    if (i != j) {
-                        sum2 += array[j];
-                    } else {
-                        sum2 = 0;
-                        break;
-                    }
+                for (int j = 0; j < i; j++) {
+                    sum2 += array[j];
                 }
+
+                if (sum1 == sum2) {
+                    System.out.println("Одинаковые суммы левой и правой части массива равны: " + sum1);
+                    return true;
+                }
+                    sum2 = 0;
             }
 
-        System.out.println(sum1 + " " + sum2);
-        return sum1 == sum2;
+            System.out.println("Одинаковых сумм левой и правой частей массива не найдено.");
+            return false;
 
     }
 
     public static void arrayShifter(int[] array, int shift) {
-        int arrLength = array.length;
 
         for(int i = 0; i > shift; i--) {
             int temp = array[0];
-            for(int k = 0; k < arrLength-1; k++) {
+            for(int k = 0; k < array.length-1; k++) {
                 array[k] = array[k+1];
             }
-            array[arrLength-1] = temp;
+            array[array.length-1] = temp;
         }
 
         for (int i = 0; i < shift; i++) {
-            int temp = array[arrLength-1];
-            for (int j = arrLength-1; j > 0 ; j--) {
+            int temp = array[array.length-1];
+            for (int j = array.length-1; j > 0 ; j--) {
                 array[j] = array[j-1];
             }
             array[0] = temp;
