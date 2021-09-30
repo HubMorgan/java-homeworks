@@ -175,19 +175,18 @@ public class Homework {
     }
 
     public static void arrayShifter(int[] array, int shift) {
-        int arrLength = array.length;
 
         for(int i = 0; i > shift; i--) {
             int temp = array[0];
-            for(int k = 0; k < arrLength-1; k++) {
+            for(int k = 0; k < array.length-1; k++) {
                 array[k] = array[k+1];
             }
-            array[arrLength-1] = temp;
+            array[array.length-1] = temp;
         }
 
         for (int i = 0; i < shift; i++) {
-            int temp = array[arrLength-1];
-            for (int j = arrLength-1; j > 0 ; j--) {
+            int temp = array[array.length-1];
+            for (int j = array.length-1; j > 0 ; j--) {
                 array[j] = array[j-1];
             }
             array[0] = temp;
