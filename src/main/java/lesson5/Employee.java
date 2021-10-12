@@ -1,15 +1,15 @@
 package lesson5;
 
 public class Employee {
-    String firstName;
-    String middleName;
-    String lastName;              //Я дольше придумывал, как назвать переменную для отчества, чем писал этот код.
-    int age;
-    String department;
-    String email;
-    String tel;
-    double salary;
-    static int employeeCounter = 0;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    public int age;
+    private String department;
+    private String email;
+    private String tel;
+    private double salary;
+    private static int employeeCounter = 0;
 
     public Employee(String firstName, String middleName, String lastName, int age, String department, String email, String tel, double salary) {
         this.firstName = firstName;

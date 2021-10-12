@@ -12,7 +12,7 @@ public class Main {
 
 
         for (int i = 0; i < empArray.length; i++) {
-            if(empArray[i].age > 40) {
+            if(empArray[i].showAge() > 40) {
                 empArray[i].showInfo();
             }
         }
